@@ -39,3 +39,28 @@ export const students = [
     }
   }
 ];
+// To get average from subjects
+export function getAverage(subjects) {
+  const scores = Object.values(subjects);
+  const total = scores.reduce((sum, score) => sum + score, 0);
+  return Math.round(total / scores.length);
+}
+
+// To get student info by ID number
+export function getStudentById(id) {
+  const student = students.find(s => s.id === id);
+  if (!student) {
+    return "Student not found";
+  }
+  return {
+    id: student.id,
+    name: student.name,
+    subjects: student.subjects,
+    average: getAverage(student.subjects)
+  };
+}
+
+// To show all students
+students.forEach(student => {
+  console.log(`${student.id} - ${student.name} - Average: ${getAverage(student.subjects)}`);
+});
