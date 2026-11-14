@@ -1,6 +1,8 @@
 import { randomUUID } from "node:crypto";
 import { readStudents, writeStudents } from "./fileService.js";
 
+import { validateStudentData } from "../utils/validation.js";
+
 // calculate a student's average score
 function calculateAverage(subjects) {
   const scores = Object.values(subjects);
@@ -26,15 +28,18 @@ export async function getStudentById(id) {
 
 //Create a new student
 export async function createStudent(studentData) {
+  //Validate the information before saving it
+  const validatedData = validateStudentData(studentData);
+  
   const students = await readStudents();
   const now = new Date().toISOString();
   const newStudent = {
     id: `STU-${randomUUID()}`,
-    firstName: studentData.firstName,
-    lastName: studentData.lastName,
-    email: studentData.email,
-    subjects: studentData.subjects,
-    average: calculateAverage(studentData.subjects),
+    firstName: validatedData.firstName,
+    lastName: validatedData.lastName,
+    email: validatedData.email,
+    subjects: validatedData.subjects,
+    average: calculateAverage(validatedData.subjects),
     createdAt: now,
     updatedAt: now,
   };
@@ -52,14 +57,18 @@ export async function updateStudent(id, updatedData) {
     return null;
   }
 
+  //validate the updated informaton
+  const validatedData = validateStudentData(updatedData);
+  
   const existingStudent = students[studentIndex];
+  
   const updatedStudent = {
     ...existingStudent,
-    firstName: updatedData.firstName,
-    lastName: updatedData.lastName,
-    email: updatedData.email,
-    subjects: updatedData.subjects,
-    average: calculateAverage(updatedData.subjects),
+    firstName: validatedData.firstName,
+    lastName: validatedData.lastName,
+    email: validatedData.email,
+    subjects: validatedData.subjects,
+    average: calculateAverage(validatedData.subjects),
     updatedAt: new Date().toISOString(),
   };
   students[studentIndex] = updatedStudent;

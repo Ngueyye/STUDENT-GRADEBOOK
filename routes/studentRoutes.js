@@ -1,39 +1,82 @@
-import express from 'express';
-import studentRoutes from './routes/studentRoutes.js';
+import express from "express";
+import { getAllStudents,
+  getStudentById,
+  createStudent,
+  updateStudent,
+  deleteStudent,
+} from "../services/studentService.js";
 
-const app = express();
+const router = express.Router();
 
-// Middleware to read JSON request bodies
-app.use(express.json());
-
-// Welcome route
-app.get('/', (req, res) => {
+//GET /api/students
+//Get all students
+router.get("/", async (req, res) => {
+  const students = await getAllStudents();
   res.status(200).json({
     success: true,
-    message: 'Student Gradebook API is running.'
+    count: students.length,
+    data: students,
   });
 });
 
-// Student routes
-app.use('/api/students', studentRoutes);
-
-// Handle routes that do not exist
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Route not found.'
+//GET /api/students/:id
+//Get a student by ID
+router.get("/:id", async (req, res) => {
+  const student = await getStudentById(req.params.id);
+  if (!student) {
+    return res.status(404).json({
+      success: false,
+      message: "Student not found."
+    });
+  }
+  res.status(200).json({
+    success: true,
+    data: student
   });
 });
 
-// Central error handler
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-
-  res.status(statusCode).json({
-    success: false,
-    message: err.message || 'Internal server error.',
-    ...(err.errors && { errors: err.errors })
+//POST /api/students
+//Create a new student
+router.post("/", async (req, res) => {
+  const newStudent = await createStudent(req.body);
+  res.status(201).json({
+    success: true,
+    message: "Student created successfully.",
+    data: newStudent
   });
 });
 
-export default app;
+//PUT /api/students/:id
+//Update a student
+router.put("/:id", async (req, res) => {
+  const updatedStudent = await updateStudent(req.params.id, req.body);
+  if (!updatedStudent) {
+    return res.status(404).json({
+      success: false,
+      message: "Student not found."
+    });
+  }
+  res.status(200).json({
+    success: true,
+    message: "Student updated successfully.",
+    data: updatedStudent
+  });
+});
+
+//DELETE /api/students/:id
+//Delete a student
+router.delete("/:id", async (req, res) => {
+  const deleted = await deleteStudent(req.params.id);
+  if (!deleted) {
+    return res.status(404).json({
+      success: false,
+      message: "Student not found."
+    });
+  }
+  res.status(200).json({
+    success: true,
+    message: "Student deleted successfully."
+  });
+});
+
+export default router;
