@@ -60,7 +60,7 @@ export function validateStudentData(studentData) {
         score > 100
       ) {
         errors.push(
-          ${subject} must have a numeric score between 0 and 100.
+          `${subject} must have a numeric score between 0 and 100.`
         );
       }
     }
