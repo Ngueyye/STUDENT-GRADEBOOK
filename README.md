@@ -92,3 +92,13 @@ The API uses appropriate HTTP status codes to communicate errors:
 - **400:** Validation error or malformed JSON body.
 - **404:** Student ID or API route not found.
 - **500:** Internal server error.
+
+
+  Team members coolabaration :
+  1 Adeniyi olamide Adeife:feature/routes,feature/services, created project structure,wrote studentservice/students routes file,testing and error handling,tested all crud operations.
+  2 Muhammed Bahir Abdullahi,Marvel708 and imadeniyi : feature: calculation.js wrote codes in calculation.js. did quality reassurance,did testing and error handling,tested all crud operations,created READ.MD
+  3 Adole ngueyye: feature/app.js, created server.js, did testing and error handling,created repository and added everyone as collaborators,tested all crud operations.
+  4 Leesa22 and agudatemiloluwa-commits :feature/file service ,provided students information,did testing and error handling,tested all CRUD oprations.
+5 Hifzy and Jatu-Abel: feature/validation.js,checked if data types are correct,if students information are correct,checked data in requests, testing and  error handling,tested all CRUD operations
+  
+  
