@@ -2,25 +2,7 @@ import { randomUUID } from "node:crypto";
 import { readStudents, writeStudents } from "./fileService.js";
 
 import { validateStudentData } from "../utils/validation.js";
-
-// calculate a student's average score
-function calculateAverage(subjects) {
-  const scores = Object.values(subjects);
-
-  if (scores.length === 0) {
-    return 0;
-  }
-
-  const total = scores.reduce((sum, score) => sum + score, 0);
-  return Number((total / scores.length).toFixed(2));
-}
-// calculate student status
-const PASS_MARK = 50;
-export function calculateStatus(average) {
-  return average >= PASS_MARK ? "Pass" : "Fail";
-}
-
-
+import { calculateAverage, calculateStatus, findHighestStudent, findLowestStudent } from "../utils/calculations.js";
 
 //Get all students
 export async function getAllStudents() {
@@ -31,6 +13,17 @@ export async function getAllStudents() {
 export async function getStudentById(id) {
   const students = await readStudents();
   return students.find((student) => student.id === id) || null;
+}
+//Get highest student
+export async function getHighestStudent() {
+  const students = await readStudents();
+  return findHighestStudent(students);
+}
+
+//Get lowest student
+export async function getLowestStudent() {
+  const students = await readStudents();
+  return findLowestStudent(students);
 }
 
 //Create a new student
@@ -70,7 +63,7 @@ export async function updateStudent(id, updatedData) {
   const validatedData = validateStudentData(updatedData);
   
   const existingStudent = students[studentIndex];
-  
+   const average = calculateAverage(validatedData.subjects);
   const updatedStudent = {
     ...existingStudent,
     firstName: validatedData.firstName,
