@@ -2,18 +2,7 @@ import { randomUUID } from "node:crypto";
 import { readStudents, writeStudents } from "./fileService.js";
 
 import { validateStudentData } from "../utils/validation.js";
-
-// calculate a student's average score
-function calculateAverage(subjects) {
-  const scores = Object.values(subjects);
-
-  if (scores.length === 0) {
-    return 0;
-  }
-
-  const total = scores.reduce((sum, score) => sum + score, 0);
-  return Number((total / scores.length).toFixed(2));
-}
+import { calculateAverage, calculateStatus, findHighestStudent, findLowestStudent } from "../utils/calculations.js";
 
 //Get all students
 export async function getAllStudents() {
@@ -25,6 +14,17 @@ export async function getStudentById(id) {
   const students = await readStudents();
   return students.find((student) => student.id === id) || null;
 }
+//Get highest student
+export async function getHighestStudent() {
+  const students = await readStudents();
+  return findHighestStudent(students);
+}
+
+//Get lowest student
+export async function getLowestStudent() {
+  const students = await readStudents();
+  return findLowestStudent(students);
+}
 
 //Create a new student
 export async function createStudent(studentData) {
@@ -33,6 +33,7 @@ export async function createStudent(studentData) {
   
   const students = await readStudents();
   const now = new Date().toISOString();
+  const average = calculateAverage(validatedData.subjects);
   const newStudent = {
     id: `STU-${randomUUID()}`,
     firstName: validatedData.firstName,
@@ -40,6 +41,7 @@ export async function createStudent(studentData) {
     email: validatedData.email,
     subjects: validatedData.subjects,
     average: calculateAverage(validatedData.subjects),
+    status:calculateStatus(average),
     createdAt: now,
     updatedAt: now,
   };
@@ -61,7 +63,7 @@ export async function updateStudent(id, updatedData) {
   const validatedData = validateStudentData(updatedData);
   
   const existingStudent = students[studentIndex];
-  
+   const average = calculateAverage(validatedData.subjects);
   const updatedStudent = {
     ...existingStudent,
     firstName: validatedData.firstName,
@@ -69,6 +71,7 @@ export async function updateStudent(id, updatedData) {
     email: validatedData.email,
     subjects: validatedData.subjects,
     average: calculateAverage(validatedData.subjects),
+    status: calculateStatus(average),
     updatedAt: new Date().toISOString(),
   };
   students[studentIndex] = updatedStudent;
