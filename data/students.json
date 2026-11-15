@@ -1,0 +1,77 @@
+[
+  {
+    "id": "STU-b2946afc-346e-42b0-88bc-29442438e064",
+    "firstName": "Amaka",
+    "lastName": "Eze",
+    "email": "amaka.eze@example.com",
+    "subjects": {
+      "Mathematics": 82,
+      "English": 76,
+      "Computer Science": 89
+    },
+    "average": 82.33,
+    "status": "Pass",
+    "createdAt": "2026-11-15T01:18:51.098Z",
+    "updatedAt": "2026-11-15T01:18:51.098Z"
+  },
+  {
+    "id": "STU-c699c013-75a5-488b-a2f4-cb4428585456",
+    "firstName": "Kelechi",
+    "lastName": "Uche",
+    "email": "kelechi.uche@example.com",
+    "subjects": {
+      "Mathematics": 40,
+      "English": 48,
+      "Computer Science": 35
+    },
+    "average": 41,
+    "status": "Fail",
+    "createdAt": "2026-11-15T01:26:53.900Z",
+    "updatedAt": "2026-11-15T01:26:53.900Z"
+  },
+  {
+    "id": "STU-0be28ca5-3270-47ab-bde6-b8be46492130",
+    "firstName": "Zainab",
+    "lastName": "Bello",
+    "email": "zainab.bello@example.com",
+    "subjects": {
+      "Mathematics": 50,
+      "English": 50,
+      "Computer Science": 50
+    },
+    "average": 50,
+    "status": "Pass",
+    "createdAt": "2026-11-15T01:28:25.912Z",
+    "updatedAt": "2026-11-15T01:28:25.912Z"
+  },
+  {
+    "id": "STU-93ae0a90-909b-4413-b0a2-7a091581b480",
+    "firstName": "David",
+    "lastName": "Ojo",
+    "email": "david.ojo@example.com",
+    "subjects": {
+      "Mathematics": 49,
+      "English": 50,
+      "Computer Science": 50
+    },
+    "average": 49.67,
+    "status": "Fail",
+    "createdAt": "2026-11-15T01:29:03.090Z",
+    "updatedAt": "2026-11-15T01:29:03.090Z"
+  },
+  {
+    "id": "STU-1a7106fc-c48c-43f0-afd7-2f3d23d91726",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "subjects": {
+      "Mathematics": 85,
+      "English": 72,
+      "Computer Science": 90
+    },
+    "average": 82.33,
+    "status": "Pass",
+    "createdAt": "2026-11-15T01:34:08.957Z",
+    "updatedAt": "2026-11-15T01:34:08.957Z"
+  }
+]
