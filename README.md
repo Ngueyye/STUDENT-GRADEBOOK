@@ -9,14 +9,14 @@ A RESTful API built with Node.js and Express for managing student records, subje
 - **Highest & Lowest Student:** Dedicated endpoints to retrieve the highest and lowest scoring students based on their average scores.
 - **Unique ID Generation:** Generates unique "STU-<UUID>" identifiers for every new student.
 - **Data Validation & Error Handling:** Validates incoming student data and handles errors through a centralized Express error handler.
-- **Persistent JSON Storage:** Reads and writes student records to "data/students.json".
+- **Persistent JSON Storage:** Reads and writes student records to `data/students.json`.
 
 ## Tech Stack
 
 - **Runtime:** Node.js (ES Modules)
 - **Framework:** Express.js
-- **Storage:** Local JSON file ("fs/promises")
-- **ID Generation:** "node:crypto" ("randomUUID")
+- **Storage:** Local JSON file (`fs/promises`)
+- **ID Generation:** `node:crypto` (`randomUUID`)
 
 ## Project Structure
 
@@ -93,12 +93,56 @@ The API uses appropriate HTTP status codes to communicate errors:
 - **404:** Student ID or API route not found.
 - **500:** Internal server error.
 
+## Team Members and Contributions
 
-  Team members coolabaration :
-  1 Adeniyi olamide Adeife:feature/routes,feature/services, created project structure,wrote studentservice/students routes file,testing and error handling,tested all crud operations.
-  2 Muhammed Bahir Abdullahi,Marvel708 and imadeniyi : feature: calculation.js wrote codes in calculation.js. did quality reassurance,did testing and error handling,tested all crud operations,created READ.MD
-  3 Adole ngueyye: feature/app.js, created server.js, did testing and error handling,created repository and added everyone as collaborators,tested all crud operations.
-  4 Leesa22 and agudatemiloluwa-commits :feature/file service ,provided students information,did testing and error handling,tested all CRUD oprations.
-5 Hifzy and Jatu-Abel: feature/validation.js,checked if data types are correct,if students information are correct,checked data in requests, testing and  error handling,tested all CRUD operations
-  
-  
+The Student Gradebook API was developed collaboratively by the following team members:
+
+### 1. Adeniyi Olamide Adeife
+**Branch:** `feature/routes`, `feature/services`
+
+- Created the project structure.
+- Developed `studentService.js` and `studentRoutes.js`.
+- Worked on testing and error handling.
+- Tested all CRUD operations.
+
+### 2. Muhammed Bahir Abdullahi, Marvel708 and imadeniyi
+**Branch:** `feature/calculations.js`
+
+- Developed the code in `calculations.js`.
+- Carried out quality assurance.
+- Participated in testing and error handling.
+- Tested all CRUD operations.
+- Created the `README.md` documentation.
+
+### 3. Adole Ngueyye
+**Branch:** `feature/app.js`
+
+- Created `server.js`.
+- Worked on testing and error handling.
+- Created the GitHub repository.
+- Added all team members as repository collaborators.
+- Tested all CRUD operations.
+
+### 4. Leesa22 and agudatemiloluwa-commits
+**Branch:** `feature/file-service`
+
+- Worked on the file service implementation.
+- Provided student information for the project.
+- Participated in testing and error handling.
+- Tested all CRUD operations.
+
+### 5. Hifzy and Jatu-Abel
+**Branch:** `feature/validation.js`
+
+- Developed the validation functionality.
+- Checked that submitted data types were correct.
+- Validated student information.
+- Checked data submitted through API requests.
+- Participated in testing and error handling.
+- Tested all CRUD operations.
+
+---
+
+**Project:** Student Gradebook API
+
+**Repository:** https://github.com/Ngueyye/STUDENT-GRADE-BOOK.git
