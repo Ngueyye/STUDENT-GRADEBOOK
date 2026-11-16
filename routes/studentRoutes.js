@@ -4,7 +4,10 @@ import { getAllStudents,
   createStudent,
   updateStudent,
   deleteStudent,
+  getHighestStudent,
+  getLowestStudent,
 } from "../services/studentService.js";
+import { findHighestStudent } from "../utils/calculations.js";
 
 const router = express.Router();
 
@@ -16,6 +19,38 @@ router.get("/", async (req, res) => {
     success: true,
     count: students.length,
     data: students,
+  });
+});
+
+//GET /api/students/highest
+//Get highest student
+router.get("/highest", async (req, res, next) => {
+  const student = await getHighestStudent()
+    if (!student) {
+    return res.status(404).json({
+      success: false,
+      message: "Student not found."
+    });
+}
+res.status(200).json({
+    success: true,
+    data: student
+  });
+});
+
+//GET /api/students/lowest
+//Get lowest student
+router.get("/lowest", async (req, res, next) => {
+  const student = await getLowestStudent()
+    if (!student) {
+    return res.status(404).json({
+      success: false,
+      message: "Student not found."
+    });
+}
+res.status(200).json({
+    success: true,
+    data: student
   });
 });
 
